@@ -93,3 +93,14 @@ npm run dev
 - Клик по карточке открывает /users/<id>, кнопка «Назад» возвращает на главную.
 - Прямая ссылка http://localhost:5173/users/<id> открывается.
 - Несуществующий id → «Сотрудник не найден».
+- Чтобы проверить, как приложение обрабатывает сбой сервера (экран «Критическая ошибка»), не нужно ждать, пока упадет сеть. Это можно сделать принудительно:
+
+1. Откройте файл `src/api/users.ts`.
+2. Найдите константу `BASE`:
+   ```ts
+   const BASE = 'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users';
+   ```
+3. Временно измените её, добавив параметры __code=500&__dynamic=true, чтобы API возвращал ошибку 500:
+   ```bash
+   const BASE = 'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true';
+   ```
